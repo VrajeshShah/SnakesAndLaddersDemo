@@ -1,11 +1,9 @@
-from IDice import IDice
-
-
+from dice.IDice import IDice
 import random
-class NormalDice(IDice):
+class CrookedDice(IDice):
 
     def __init__(self):
-        self.diceSides=[*range(1,7,1)]
+        self.diceSides=[*range(1,7,2)]
 
     def RollDice(self):
         random.shuffle(self.diceSides)

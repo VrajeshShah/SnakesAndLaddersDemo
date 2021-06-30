@@ -1,5 +1,4 @@
-from CrookedDice import CrookedDice
-from IDice import IDice
+from dice.CrookedDice import CrookedDice
 
 
 a=CrookedDice()
