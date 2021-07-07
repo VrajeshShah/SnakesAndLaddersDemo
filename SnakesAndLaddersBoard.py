@@ -1,3 +1,4 @@
+from dice.IDice import IDice
 import JsonOperations
 
 class SnakesAndLaddersBoard():
@@ -5,6 +6,7 @@ class SnakesAndLaddersBoard():
     def __init__(self,gameJsonPath):
         self.gameData=JsonOperations.JsonToObject(gameJsonPath)
         self.boardSize=int(self.gameData['Size'])
+        self.boardEnd=self.boardSize*self.boardSize
         self.boardSnakes=dict()
         self.boardSnakesEnds=dict()
         self.boardLadders=dict()
@@ -27,6 +29,34 @@ class SnakesAndLaddersBoard():
                 ladderCount+=1
             self.boardLadders[ladder[0]][0]=ladder[1]
         self.playerPosition=1
+
+    def PlayGame(self,diceRoleValue):
+        print("Dice Role Value:{0}".format(diceRoleValue))
+        if self.playerPosition==self.boardEnd:
+            print("Game Already Over!!")
+        self.playerPosition+=diceRoleValue
+        if self.playerPosition==self.boardEnd:
+            print("Game Over!!Thank You For Playing")
+        elif self.playerPosition>self.boardEnd:
+            self.playerPosition-=diceRoleValue
+            print("Dice Role was Greater Than Actual Play, Your Turn will be Skipped")
+        elif self.playerPosition in self.boardSnakes:
+            snakeHit=self.boardSnakes[self.playerPosition][1]
+            self.playerPosition=self.boardSnakes[self.playerPosition][0]
+            print("New Position:{0}, Hit Snack Number:{1}".format(self.playerPosition,snakeHit))
+        elif self.playerPosition in self.boardLadders:
+            ladderHit=self.boardLadders[self.playerPosition][1]
+            self.playerPosition=self.boardLadders[self.playerPosition][0]
+            print("New Position:{0}, Hit Ladders Number:{1}".format(self.playerPosition,ladderHit))
+        else:
+            print("New Position:{0}".format(self.playerPosition))
+        print("\n")
+
+    def Play(self,dice):
+        if isinstance(dice, IDice)==False:
+            raise Exception("Not a Valid Dice")
+        diceRoleValue=dice.RollDice()
+        self.PlayGame(diceRoleValue)
 
     def PrintBoard(self):
         temp=self.boardSize*self.boardSize
