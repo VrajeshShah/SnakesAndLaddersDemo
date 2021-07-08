@@ -1,4 +1,3 @@
-# from dice.CrookedDice import CrookedDice
 from dice.CrookedDice import CrookedDice
 from SnakesAndLaddersBoard import SnakesAndLaddersBoard
 from dice.NormalDice import NormalDice
@@ -15,9 +14,9 @@ try:
     while(1):
         instructions="""
 
-            1. Play a Move.
-            2. Print the Board.
-            3. Quit.
+1. Play a Move.
+2. Print the Board.
+3. Quit.
 
         """
         print(instructions)
