@@ -2,7 +2,7 @@ import unittest
 from dice.NormalDice import NormalDice
 
 class TestNormalDice(unittest.TestCase):
-    def test_normalDiceInstance(self):
+    def testNormalDiceInstance(self):
         dice=NormalDice()
         self.assertIsInstance(dice.RollDice(), int)
  

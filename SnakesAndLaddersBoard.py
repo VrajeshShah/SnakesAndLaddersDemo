@@ -30,6 +30,7 @@ class SnakesAndLaddersBoard():
             self.boardLadders[ladder[0]][0]=ladder[1]
         self.playerPosition=1
 
+
     def PlayGame(self,diceRoleValue):
         print("Dice Role Value:{0}".format(diceRoleValue))
         if self.playerPosition==self.boardEnd:
